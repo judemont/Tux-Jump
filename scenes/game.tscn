@@ -1,33 +1,58 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0f6fimrng12x"]
+[gd_scene load_steps=9 format=3 uid="uid://b0f6fimrng12x"]
 
-[ext_resource type="Script" uid="uid://casepp78d3psc" path="res://scenes/game.gd" id="1_lnu2h"]
+[ext_resource type="Script" uid="uid://casepp78d3psc" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bpkxrsu6koq32" path="res://scenes/player.tscn" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://bl5y2wkjav486" path="res://scenes/ground.tscn" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://bejttp1uthy64" path="res://scripts/camera_2d.gd" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://c6b2w27uhtuyj" path="res://scenes/platform.tscn" id="5_iywne"]
+[ext_resource type="FontFile" uid="uid://cfgtomb5bl7dh" path="res://assets/Ordews-3l1lG.otf" id="6_p57ef"]
 
-[sub_resource type="Gradient" id="Gradient_uwrxv"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_iywne"]
+offsets = PackedFloat32Array(0.473404)
+colors = PackedColorArray(0.172833, 0.172833, 0.172833, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_yqjtg"]
-gradient = SubResource("Gradient_uwrxv")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p57ef"]
+gradient = SubResource("Gradient_iywne")
+
+[sub_resource type="LabelSettings" id="LabelSettings_u5sy4"]
+font = ExtResource("6_p57ef")
+font_size = 72
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lnu2h")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -499.0
-offset_top = -741.0
-offset_right = 501.0
-offset_bottom = 759.0
-texture = SubResource("GradientTexture1D_yqjtg")
-
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(-1, 2)
+position = Vector2(4, 343)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(-3.13002, -1.00253)
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
+script = ExtResource("4_lbhrr")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
 
-[node name="ground" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(0, 451)
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_mirroring = Vector2(64, 64)
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer"]
+offset_left = -194.0
+offset_top = -151.0
+offset_right = 806.0
+offset_bottom = 1570.0
+texture = SubResource("GradientTexture1D_p57ef")
+stretch_mode = 1
+
+[node name="Platform" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(4, 457)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+offset_left = 556.0
+offset_top = 46.0
+offset_right = 653.0
+offset_bottom = 118.0
+size_flags_horizontal = 4
+text = "0"
+label_settings = SubResource("LabelSettings_u5sy4")
+horizontal_alignment = 1

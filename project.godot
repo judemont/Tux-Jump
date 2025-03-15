@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tux Jump"
-run/main_scene="uid://b0f6fimrng12x"
+run/main_scene="uid://bpctefnokw0ou"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [global_group]

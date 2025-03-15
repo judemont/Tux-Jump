@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c020bq73ha2ti"]
+
+[ext_resource type="FontFile" uid="uid://y5moexmnto2f" path="res://assets/PixelGame-R9AZe.otf" id="1_lbl2b"]
+
+[resource]
+default_font = ExtResource("1_lbl2b")
+default_font_size = 60

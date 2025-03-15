@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtr6r1ib67owt"]
+
+[ext_resource type="Script" uid="uid://cjbib6i4buks0" path="res://game_over.gd" id="1_racf3"]
+[ext_resource type="FontFile" uid="uid://cfgtomb5bl7dh" path="res://assets/Ordews-3l1lG.otf" id="2_7m3ot"]
+[ext_resource type="Texture2D" uid="uid://tcuv5pqp8uet" path="res://assets/player.png" id="3_v3hpu"]
+[ext_resource type="Theme" uid="uid://c020bq73ha2ti" path="res://assets/button_theme.tres" id="4_irg28"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r67kn"]
+font = ExtResource("2_7m3ot")
+font_size = 90
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_racf3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.158472, 0.158472, 0.158472, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -164.0
+offset_right = 165.0
+offset_bottom = 293.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Over!"
+label_settings = SubResource("LabelSettings_r67kn")
+horizontal_alignment = 1
+metadata/_edit_group_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+layout_mode = 2
+offset_left = 360.0
+offset_right = 360.0
+offset_bottom = 293.0
+size_flags_horizontal = 4
+
+[node name="Tux" type="Sprite2D" parent="ColorRect/CenterContainer"]
+position = Vector2(0, 500)
+scale = Vector2(0.485, 0.485)
+texture = ExtResource("3_v3hpu")
+
+[node name="StartButton" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 800.0
+offset_right = 144.0
+offset_bottom = 900.0
+grow_horizontal = 2
+theme = ExtResource("4_irg28")
+text = "PLAY AGAIN"
+
+[node name="HomeButton" type="Button" parent="ColorRect"]
+layout_mode = 2
+offset_left = 216.0
+offset_top = 1000.0
+offset_right = 504.0
+offset_bottom = 1100.0
+grow_horizontal = 2
+theme = ExtResource("4_irg28")
+text = "HOME"
+
+[connection signal="pressed" from="ColorRect/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ColorRect/HomeButton" to="." method="_on_home_button_pressed"]
