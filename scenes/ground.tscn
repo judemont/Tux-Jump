@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl5y2wkjav486"]
+
+[ext_resource type="Texture2D" uid="uid://c3gtnar5g8mwt" path="res://assets/Brown.png" id="1_pybca"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pybca"]
+size = Vector2(824, 63)
+
+[node name="ground" type="StaticBody2D" groups=["platforms"]]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -410.0
+offset_top = -27.0
+offset_right = 416.0
+offset_bottom = 37.0
+texture = ExtResource("1_pybca")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 4.5)
+shape = SubResource("RectangleShape2D_pybca")

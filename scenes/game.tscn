@@ -1,10 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0f6fimrng12x"]
+[gd_scene load_steps=6 format=3 uid="uid://b0f6fimrng12x"]
 
+[ext_resource type="Script" uid="uid://casepp78d3psc" path="res://scenes/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bpkxrsu6koq32" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://bl5y2wkjav486" path="res://scenes/ground.tscn" id="2_yqjtg"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
+[sub_resource type="Gradient" id="Gradient_uwrxv"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yqjtg"]
+gradient = SubResource("Gradient_uwrxv")
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_lnu2h")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -499.0
+offset_top = -741.0
+offset_right = 501.0
+offset_bottom = 759.0
+texture = SubResource("GradientTexture1D_yqjtg")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(-1, 2)
@@ -13,8 +28,6 @@ position = Vector2(-1, 2)
 scale = Vector2(-3.13002, -1.00253)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-1, 350)
-scale = Vector2(4.6, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_uwrxv")
+[node name="ground" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(0, 451)
