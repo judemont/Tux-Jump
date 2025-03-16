@@ -12,6 +12,8 @@ var win_height = 0
 var initial_y = 0
 var score = 0
 
+var jump = false
+
 func _ready() -> void:
 	initial_y = position.y
 	win_width = int(get_viewport().get_visible_rect().size.x)
@@ -23,11 +25,11 @@ func _physics_process(delta: float) -> void:
 		get_node("../CanvasLayer/ScoreLabel").text = str(score)
 	
 	get_node("CollisionShape2D").disabled = round(velocity.y) <= 0
-
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
-	else:
+	elif jump:
 		velocity.y += JUMP_VELOCITY
+		jump = false
 	
 	var mouse_x =  get_global_mouse_position().x
 
@@ -60,3 +62,7 @@ func _physics_process(delta: float) -> void:
 func _input(event):
 	if (event is InputEventScreenTouch or event is InputEventMouseButton ):
 		is_pressing = event.pressed 
+
+
+func _on_body_entered(body: Node2D) -> void:
+	jump = body.is_in_group("platforms") # Replace with function body.
