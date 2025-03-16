@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -800.0
+const BOOST_VELOCITY = -1900
 const GRAVITY = 1300.0
 const GAME_OVER_LIMIT_Y = 590
 
@@ -12,7 +13,7 @@ var win_height = 0
 var initial_y = 0
 var score = 0
 
-var jump = false
+var boost = false
 
 func _ready() -> void:
 	initial_y = position.y
@@ -27,9 +28,10 @@ func _physics_process(delta: float) -> void:
 	get_node("CollisionShape2D").disabled = round(velocity.y) <= 0
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
-	elif jump:
+	elif boost:
+		velocity.y += BOOST_VELOCITY
+	else:
 		velocity.y += JUMP_VELOCITY
-		jump = false
 	
 	var mouse_x =  get_global_mouse_position().x
 
@@ -65,4 +67,4 @@ func _input(event):
 
 
 func _on_body_entered(body: Node2D) -> void:
-	jump = body.is_in_group("platforms") # Replace with function body.
+	boost = body.is_in_group("platforms_boost") # Replace with function body.

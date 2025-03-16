@@ -6,9 +6,13 @@ const VIEW_DIVISION_HEIGHT = 70
 const DIVS_MARGIN = 50
 
 var platform_scene = preload("res://scenes/platform.tscn")
+var platform_boost_scene = preload("res://scenes/platform_boost.tscn")
+
 var win_width = 0
 var win_height = 0
 var div_i = 0
+
+const boost_prob = 20 # on 100
 
 func _ready() -> void:
 	win_width = int(get_viewport().get_visible_rect().size.x)
@@ -28,7 +32,11 @@ func generate_platforms() -> void:
 	var max_y = -(div_i + 1) * VIEW_DIVISION_HEIGHT - (DIVS_MARGIN * (div_i + 1)) +500
 	
 	for i in range(platforms_count):
-		var platform = platform_scene.instantiate()
+		var platform
+		if randi() % 100 < boost_prob:
+			platform = platform_boost_scene.instantiate()
+		else:
+			platform = platform_scene.instantiate()
 		var x = randi_range(-win_width/2 + 80, win_width/2 - 80)
 		var y = randi_range(min_y, max_y)
 		
