@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpctefnokw0ou"]
+[gd_scene load_steps=8 format=3 uid="uid://bpctefnokw0ou"]
 
-[ext_resource type="Script" uid="uid://w4djfplfaag8" path="res://scenes/home.gd" id="1_reixx"]
+[ext_resource type="Script" uid="uid://w4djfplfaag8" path="res://scripts/home.gd" id="1_reixx"]
 [ext_resource type="FontFile" uid="uid://cfgtomb5bl7dh" path="res://assets/Ordews-3l1lG.otf" id="1_w18ys"]
 [ext_resource type="Texture2D" uid="uid://tcuv5pqp8uet" path="res://assets/player.png" id="2_reixx"]
 [ext_resource type="Theme" uid="uid://c020bq73ha2ti" path="res://assets/button_theme.tres" id="3_uhids"]
+[ext_resource type="FontFile" uid="uid://y5moexmnto2f" path="res://assets/PixelGame-R9AZe.otf" id="5_uhids"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r67kn"]
 font = ExtResource("1_w18ys")
 font_size = 90
+
+[sub_resource type="LabelSettings" id="LabelSettings_yxilm"]
+font = ExtResource("5_uhids")
+font_size = 61
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -54,7 +59,7 @@ offset_bottom = 293.0
 size_flags_horizontal = 4
 
 [node name="Tux" type="Sprite2D" parent="ColorRect/CenterContainer"]
-position = Vector2(0, 500)
+position = Vector2(0, 425.635)
 scale = Vector2(0.485, 0.485)
 texture = ExtResource("2_reixx")
 
@@ -81,5 +86,22 @@ grow_horizontal = 2
 theme = ExtResource("3_uhids")
 text = "About
 "
+
+[node name="BestScoreLabel" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = 7.56
+offset_right = 151.0
+offset_bottom = 69.56
+grow_horizontal = 2
+grow_vertical = 2
+text = "BEST SCORE : 0"
+label_settings = SubResource("LabelSettings_yxilm")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="ColorRect/StartButton" to="." method="_on_start_button_pressed"]

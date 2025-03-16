@@ -1,17 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0f6fimrng12x"]
+[gd_scene load_steps=7 format=3 uid="uid://b0f6fimrng12x"]
 
 [ext_resource type="Script" uid="uid://casepp78d3psc" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bpkxrsu6koq32" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://bejttp1uthy64" path="res://scripts/camera_2d.gd" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c6b2w27uhtuyj" path="res://scenes/platform.tscn" id="5_iywne"]
 [ext_resource type="FontFile" uid="uid://cfgtomb5bl7dh" path="res://assets/Ordews-3l1lG.otf" id="6_p57ef"]
-
-[sub_resource type="Gradient" id="Gradient_iywne"]
-offsets = PackedFloat32Array(0.473404)
-colors = PackedColorArray(0.172833, 0.172833, 0.172833, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_p57ef"]
-gradient = SubResource("Gradient_iywne")
 
 [sub_resource type="LabelSettings" id="LabelSettings_u5sy4"]
 font = ExtResource("6_p57ef")
@@ -28,19 +21,6 @@ scale = Vector2(-3.13002, -1.00253)
 position_smoothing_enabled = true
 position_smoothing_speed = 1.0
 script = ExtResource("4_lbhrr")
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
-motion_mirroring = Vector2(64, 64)
-
-[node name="TextureRect" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer"]
-offset_left = -194.0
-offset_top = -151.0
-offset_right = 806.0
-offset_bottom = 1570.0
-texture = SubResource("GradientTexture1D_p57ef")
-stretch_mode = 1
 
 [node name="Platform" parent="." instance=ExtResource("5_iywne")]
 position = Vector2(4, 457)

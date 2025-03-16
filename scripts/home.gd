@@ -3,7 +3,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	var Score = ScoreManager.new()
+	var bestscore = Score.load_score()
+	get_node("ColorRect/BestScoreLabel").text = "BEST SCORE: " + str(bestscore)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

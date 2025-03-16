@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -700.0
-const GRAVITY = 1100.0
+const SPEED = 200.0
+const JUMP_VELOCITY = -800.0
+const GRAVITY = 1300.0
 const GAME_OVER_LIMIT_Y = 590
 
 var is_pressing = false
@@ -21,7 +21,6 @@ func _physics_process(delta: float) -> void:
 	if int(initial_y - position.y) > score*100:
 		score = int((initial_y - position.y) / 100)
 		get_node("../CanvasLayer/ScoreLabel").text = str(score)
-		print("a " + str(score))
 	
 	get_node("CollisionShape2D").disabled = round(velocity.y) <= 0
 
@@ -47,6 +46,11 @@ func _physics_process(delta: float) -> void:
 		
 
 	if position.y > GAME_OVER_LIMIT_Y:
+		Global.score = score
+		var Score = ScoreManager.new()
+		var highscore = Score.load_score()
+		if score > highscore:
+			Score.save_score(score)
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn") # Replace with function body.
 
 
